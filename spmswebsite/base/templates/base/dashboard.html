@@ -1,0 +1,139 @@
+{% extends 'partials/base.html' %}
+{% block title %}dashboardpage{% endblock %}
+{% block content %}
+{%load static%}
+
+{% include 'partials/topnav.html'%}
+<div class="container-mod">
+{% include 'partials/sidebar.html'%}
+
+<div class="main">
+<div class="row-dashboard">
+  <div class="column">
+    wewe
+  </div>
+  <div class="column">
+    mimi
+  </div>
+  <div class="column">
+      <strong style="margin-left: 10px; font-size:17px;">Progress </strong>
+      <h5 style="margin-left: 10px; font-size:15px;margin-top:10px;">Project progress </h5>
+      <div class="progress">
+        <div class="progress-done"></div>
+      </div>
+
+      {% if user.is_staff%}
+      <div class="inputContainer">
+        <div>
+          <h3 style="margin-left: 10px; font-size:17px;" >value</h3>
+          <input type="number" class="input">
+        </div>
+
+        <div>
+          <h3 style="margin-left: 10px; font-size:17px;">Max Value</h3>
+          <input type="number" class="maxInput">
+        </div>
+
+      </div>
+      {%endif%}
+
+      <h5 style="margin-left: 10px; font-size:17px;margin-top:10px;">consultation progress</h5>
+      <div class="progress">
+        <div class="progress-done"></div>
+      </div>
+
+
+      {% if user.is_staff%}
+      <div class="inputContainer">
+ 
+        
+        <div>
+          <h3 style="margin-left: 10px; font-size:17px;" >value</h3>
+          <input type="number" class="input">
+        </div>
+
+        <div>
+          <h3 style="margin-left: 10px; font-size:17px;">Max Value</h3>
+          <input type="number" class="input">
+        </div>
+
+        
+
+      </div>
+      {%endif%}
+     
+     
+    <strong style="margin-left: 10px; font-size:17px;">Inbox </strong>
+    <div class="col-content bg-light">
+    {% for post in posts %}
+    <div class="header" style="margin-left: 10px;">
+      <img style="margin-top: 10px;" src="{% static 'images/12345.jpeg' %}">
+      <strong>
+        {{ post.author.username }}
+      </strong>
+    </div>
+     <div class="body d-flex flex-row justify-content-between">
+       <div>
+         <h5 class="card-title" style="margin-left: 10px; font-size:17px;"><strong>
+          {{post.title}}
+         </strong>
+          
+         </h5>
+         <p style="margin-left: 10px; font-size:15px;">{{post.description}}</p>
+       </div>
+       <div>
+        {% if user == post.author or perms.base.delete_post%}
+          <form method="post">
+            {%csrf_token%}
+            <button type="submit" class="btn btn-danger" 
+            style="margin-right: 10px;"
+            name="post-id" value="{{post.id}}">Delete</button>
+          </form>
+    
+        {%endif%}
+        {% if user.is_staff%}
+        <form method="post">
+          {%csrf_token%}
+          <button type="submit" class="btn btn-warning" name="user-id" value="{{post.author.id}}">Ban User</button>
+        </form>
+        {% endif %}
+       </div>  
+       </div>
+       <div class="text-muted" style="margin-left: 10px; font-size:15px;">{{post.created_at}}</div>
+       <div class="space">
+
+       </div>
+       {% empty %}
+       <p> No post yet</p>
+       
+      
+    {% endfor %}
+
+    
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="{% static 'js/script.js' %}"> 
+   
+</script>
+
+
+
+
+ 
+
+{% endblock content%}
+
+
+

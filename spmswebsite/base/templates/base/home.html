@@ -1,0 +1,151 @@
+{% extends 'partials/base.html' %}
+{% block title %}homepage{% endblock %}
+{% block content %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+{% include 'partials/topnav.html'%}
+
+<div class="container-mod">
+  
+    
+  {% include 'partials/sidebar.html'%}
+
+
+     {% block progress %} 
+ 
+     
+
+     <div class="progress-line">
+
+      {% include 'base/home_student.html' %}
+
+      
+      <h3 style="font-size: 22px; font-weight:bold;margin-top:20px;">Statistical Section</h3>
+          
+            <div class="progress-bars">
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+              <div class="progress-bar-text">0%</div>
+            </div>
+            <h3 style="font-size: 17px; font-weight:bold;"> Group members participation</h3>
+
+           
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+              <div class="progress-bar-text">0%</div>
+            </div>
+            <h3 style="font-size: 17px; font-weight:bold;"> Current project progress rating</h3> 
+
+          
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+              <div class="progress-bar-text">0%</div>
+            </div>
+            <h3 style="font-size: 17px; font-weight:bold;"> Individual member participation </h3>
+
+          
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+              <div class="progress-bar-text">0%</div>
+            </div>
+            <h3 style="font-size: 17px; font-weight:bold;">Group consultation rating</h3>
+          
+
+          
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+              <div class="progress-bar-text">0%</div>
+            </div>
+            <h3 style="font-size: 17px; font-weight:bold;"> Overall group performances</h3> 
+
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+              <div class="progress-bar-text">0%</div>
+            </div>
+            <h3 style="font-size: 17px; font-weight:bold;"> Overall group performances</h3> 
+
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+              <div class="progress-bar-text">0%</div>
+            </div>
+            <h3 style="font-size: 17px; font-weight:bold;"> Overall group performances</h3> 
+
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+              <div class="progress-bar-text">0%</div>
+            </div>
+            <h3 style="font-size: 17px; font-weight:bold;"> Overall group performances</h3> 
+
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+              <div class="progress-bar-text">0%</div>
+            </div>
+            <h3 style="font-size: 17px; font-weight:bold;"> Overall group performances</h3> 
+          </div>
+          
+          {% if group == "student" %} 
+             
+          {% else %}
+
+          <form method="POST">
+            {% csrf_token%}
+
+            <label for="cars">Select student:</label>
+
+            <select name="username" >
+              {% for student in students%}
+              <option >{{student.user.username}}</option>
+              {% endfor %}
+            </select>
+
+          <div class="input-wrapper">
+            <label for="progress-input-1">Progress Bar 1: Groups participation(accessed only by group admin)
+
+            </label>
+          
+            <input id="progress-input-1" name="consultation" type="number" min="0" max="100" step="1" value="0" onchange="updateProgressBar(1)">
+          </div>
+          
+          <div class="input-wrapper">
+            <label for="progress-input-2">Progress Bar 2: Current project progress rating(visible to evaluator only )</label>
+            <input id="progress-input-2" name="progress" type="number" min="0" max="100" step="1" value="0" onchange="updateProgressBar(2)">
+          </div>
+
+          <button class="btn btn-success" type="sumit"> save </button>
+
+
+         </form>
+         <script>
+            // Get the progress bars
+             const bars = document.querySelectorAll('.progress-bar');
+
+             // Get the progress bar texts
+             const texts = document.querySelectorAll('.progress-bar-text');
+
+             // Update the progress bars and texts based on user input
+             function updateProgressBar(barIndex) {
+               const input = document.getElementById("progress-input-" + barIndex);
+               const percentage = input.value;
+  
+               const bar = bars[barIndex - 1];
+               bar.querySelector('.progress-bar-fill').style.width = percentage + '%';
+
+               const text = texts[barIndex - 1];
+               text.innerHTML = percentage + '%';
+             }
+
+         </script>
+
+        {% endif %} 
+        
+     </div>  
+     
+     {% endblock progress %}
+</div>
+
+
+
+
+    
+{% endblock content%}

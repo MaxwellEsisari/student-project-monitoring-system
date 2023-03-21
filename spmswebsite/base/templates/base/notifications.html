@@ -1,0 +1,17 @@
+{% extends 'partials/base.html' %}
+{% block title %}notifications{% endblock %}
+{% block content %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+{% include 'partials/topnav.html'%}
+<div class="container-mod">
+{% include 'partials/sidebar.html'%}
+
+<div class="container">
+
+    {% include 'base/activity_component.html' %}
+</div>
+
+</div>
+
+{% endblock content%}

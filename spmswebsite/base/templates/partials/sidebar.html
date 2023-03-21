@@ -1,0 +1,84 @@
+ {% extends 'partials/main.html'%} 
+ {%block content%}
+ {% load static%}
+ 
+ {% include 'partials/main.html'%} 
+ <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <div class="container-mod">
+        <nav class="nav-sidebar">
+         <ul>
+           
+          <div id="search-add-wrapper">
+           <form method="GET" style="margin-top:20px;display: flex;">
+             <input type="text" name="search-area" value="{{search_input}}">
+             <input class="button" type="submit" value="search">
+           </form>
+          </div>
+
+           <li><a href="/home">
+            <i class="fas fa-home"></i>
+            <span class="nav-item">Home</span>
+          </a></li>
+
+
+           <li><a href="/dashboard">
+             <i class="fas fa-qrcode"></i>
+             <span class="nav-item">Dashboard</span>
+           </a></li>
+           <!-- {% if group == "student" %} -->
+           <li><a href="/notifications">
+             <i class="fas fa-bell"></i>
+             <span class="nav-item">Notification</span>
+           </a></li>
+
+           <!-- {%else%}
+           {%endif%} -->
+          
+           <li><a href="/Reports">
+             <i class="fas fa-file"></i>
+             <span class="nav-item">Report</span>
+           </a></li>
+
+          
+           <li><a href="#">
+             <i class="fas fa-goal"></i>
+             <span class="nav-item">Goals</span>
+           </a></li>
+           <li><a href="#">
+            <i class="fas fa-chart-bar"></i>
+            <span class="nav-item">Favorites</span>
+          </a></li>
+
+
+          <li><a href="/task-list">
+            <i class="fas fa-tasks"></i>
+            <span class="nav-item">Tasks</span>
+          </a></li>
+
+          <li><a href="#">
+            <i class="fas fa-materials"></i>
+            <span class="nav-item">Materials</span>
+          </a></li>
+
+           
+
+         
+           
+           {% if user.is_authenticated%}
+           <li><a href="/login" class="logout">
+             <i class="fas fa-sign-out-alt"></i>
+             <span class="nav-item">Log out</span>
+           </a></li>
+           {%endif%}
+         </ul>
+        </nav> 
+
+
+        
+
+         
+    </div>
+
+       
+
+       {% endblock%}

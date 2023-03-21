@@ -1,0 +1,72 @@
+{% extends 'partials/base.html' %}
+{% block title %} Login {% endblock %}
+{% load crispy_forms_tags%}
+{% block navbar%} {% endblock %}
+{% block content %}
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<section class="form my-4 mx-5">
+    <div class="container">
+        <div class="row no-pad">
+            <div class="col-lg-7 px-5 pt-5">
+                <h1 class="font-weight-bold py-3"> Must-student project management system</h1>
+                <h4> sign into your account </h4>
+ 
+ 
+                <form method="post" action="{% url 'lecturer_signup' %}">
+                    {% csrf_token%}
+                    <!-- {{form|crispy}} -->
+                    <label style="font-size: 20px;"> Username</label> <br>
+                    <input type="text" name="username" placeholder="Enter username"> <br> <br>
+
+                    <label style="font-size: 20px;"> Email</label> <br>
+                    <input type="text" name="email" placeholder="@emailadress"> <br><br>
+
+                    <label style="font-size: 16px;"> Lecturer Email</label><br>
+                    <input type="text" name="lectureremail" placeholder="@emailAdress"> <br><br>
+
+                    <label style="font-size: 20px;"> password</label> <br>
+                    <input type="password" name="password1" placeholder="password1"> <br><br>
+
+                    <label style="font-size: 20px;"> confirm password1</label> <br>
+                    <input type="password" name="password2" placeholder="password2"> <br><br>
+
+                   <p> Have an account? Create one <a href="/login"> Here</a></p>
+                    <button type="submit" class="btn btn-success"> Register</button>
+                </form> 
+
+             </div>
+            <div class="col-lg-5">
+                <!-- <img src="images/travv.jpg" class="img-fluid" alt=""> -->
+                
+
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{% static 'images/illus2.webp'%}" class="d-block w-100" alt="...">
+                      </div>
+                    
+                      <div class="carousel-item">
+                        <img src="{% static 'images/illus3.webp' %}" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+
+            </div>
+           
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
